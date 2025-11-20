@@ -1,0 +1,1788 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<specificationSet xmlns="http://www.yawlfoundation.org/yawlschema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="4.0" xsi:schemaLocation="http://www.yawlfoundation.org/yawlschema http://www.yawlfoundation.org/yawlschema/YAWL_Schema4.0.xsd">
+  <specification uri="LRL_Tennis_Completato_senza_tutti_i_boolean">
+    <documentation>No description provided</documentation>
+    <metaData>
+      <creator>Utente</creator>
+      <description>No description provided</description>
+      <coverage>5.0.801</coverage>
+      <version>0.8</version>
+      <persistent>false</persistent>
+      <identifier>UID_20853c09-77e9-4d8f-a7ff-5a6473b3b13e</identifier>
+    </metaData>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" />
+    <decomposition id="LRL_Tennis" isRootNet="true" xsi:type="NetFactsType">
+      <localVariable>
+        <index>0</index>
+        <name>Nome</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <initialValue />
+      </localVariable>
+      <localVariable>
+        <index>1</index>
+        <name>Cognome</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <initialValue />
+      </localVariable>
+      <localVariable>
+        <index>2</index>
+        <name>Indirizzo_di_Spedizione</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <initialValue />
+      </localVariable>
+      <localVariable>
+        <index>3</index>
+        <name>Data_Ordine</name>
+        <type>dateTime</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <initialValue />
+      </localVariable>
+      <localVariable>
+        <index>4</index>
+        <name>Numero_Ordine</name>
+        <type>ID</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <initialValue />
+      </localVariable>
+      <localVariable>
+        <index>5</index>
+        <name>Modello</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <initialValue />
+      </localVariable>
+      <localVariable>
+        <index>6</index>
+        <name>Materiali_non_Disponibili</name>
+        <type>boolean</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <initialValue>false</initialValue>
+      </localVariable>
+      <localVariable>
+        <index>7</index>
+        <name>Materiali_da_Ordinare</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <initialValue />
+      </localVariable>
+      <localVariable>
+        <index>8</index>
+        <name>Materiali_Ordinati</name>
+        <type>boolean</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <initialValue>false</initialValue>
+      </localVariable>
+      <localVariable>
+        <index>9</index>
+        <name>Tensione_Corde_kg</name>
+        <type>int</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <initialValue>0</initialValue>
+      </localVariable>
+      <localVariable>
+        <index>10</index>
+        <name>Check_Superato</name>
+        <type>boolean</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <initialValue>false</initialValue>
+      </localVariable>
+      <localVariable>
+        <index>11</index>
+        <name>Importo</name>
+        <type>float</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <initialValue>0</initialValue>
+      </localVariable>
+      <localVariable>
+        <index>12</index>
+        <name>Assegno</name>
+        <type>boolean</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <initialValue>false</initialValue>
+      </localVariable>
+      <localVariable>
+        <index>13</index>
+        <name>Pagamento_Completato</name>
+        <type>boolean</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <initialValue>false</initialValue>
+      </localVariable>
+      <localVariable>
+        <index>14</index>
+        <name>Data_di_Spedizione</name>
+        <type>dateTime</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <initialValue />
+      </localVariable>
+      <localVariable>
+        <index>15</index>
+        <name>Numero_Fattura</name>
+        <type>ID</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <initialValue />
+      </localVariable>
+      <localVariable>
+        <index>16</index>
+        <name>Data_Fattura</name>
+        <type>dateTime</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <initialValue />
+      </localVariable>
+      <processControlElements>
+        <inputCondition id="InputCondition">
+          <flowsInto>
+            <nextElementRef id="Ricezione_Ordine" />
+          </flowsInto>
+        </inputCondition>
+        <task id="Ricezione_Ordine">
+          <name>Ricezione_Ordine</name>
+          <flowsInto>
+            <nextElementRef id="Controllo_Scorte" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <completedMappings>
+            <mapping>
+              <expression query="&lt;Data_Ordine&gt;{/Ricezione_Ordine/Data_Ordine/text()}&lt;/Data_Ordine&gt;" />
+              <mapsTo>Data_Ordine</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Indirizzo_di_Spedizione&gt;{/Ricezione_Ordine/Indirizzo_di_Spedizione/text()}&lt;/Indirizzo_di_Spedizione&gt;" />
+              <mapsTo>Indirizzo_di_Spedizione</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Nome&gt;{/Ricezione_Ordine/Nome/text()}&lt;/Nome&gt;" />
+              <mapsTo>Nome</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Modello&gt;{/Ricezione_Ordine/Modello/text()}&lt;/Modello&gt;" />
+              <mapsTo>Modello</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Cognome&gt;{/Ricezione_Ordine/Cognome/text()}&lt;/Cognome&gt;" />
+              <mapsTo>Cognome</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Numero_Ordine&gt;{/Ricezione_Ordine/Numero_Ordine/text()}&lt;/Numero_Ordine&gt;" />
+              <mapsTo>Numero_Ordine</mapsTo>
+            </mapping>
+          </completedMappings>
+          <resourcing>
+            <offer initiator="system">
+              <distributionSet>
+                <initialSet>
+                  <participant>PA-0451aa45-d440-4a29-a1f5-18e7486bfe6f</participant>
+                  <participant>PA-53111713-a60f-4eea-8120-9cb77d0c24b0</participant>
+                  <participant>PA-4114d556-79fd-4fbf-a274-072d7a744ec9</participant>
+                  <participant>PA-35455e63-a6d7-4a4c-abb5-2f662fba8115</participant>
+                  <role>RO-ad746ecf-1d99-408c-9ede-3c3aae21abf5</role>
+                </initialSet>
+              </distributionSet>
+            </offer>
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Ricezione_Ordine" />
+        </task>
+        <task id="Controllo_Scorte">
+          <name>Controllo_Scorte</name>
+          <flowsInto>
+            <nextElementRef id="Messa_in_Produzione" />
+            <isDefaultFlow />
+          </flowsInto>
+          <flowsInto>
+            <nextElementRef id="Approvvigionamento" />
+            <predicate ordering="0">LRL_Tennis/Materiali_non_Disponibili/text() = 'true'</predicate>
+          </flowsInto>
+          <join code="xor" />
+          <split code="xor" />
+          <startingMappings>
+            <mapping>
+              <expression query="&lt;Numero_Ordine&gt;{/LRL_Tennis/Numero_Ordine/text()}&lt;/Numero_Ordine&gt;" />
+              <mapsTo>Numero_Ordine</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Modello&gt;{/LRL_Tennis/Modello/text()}&lt;/Modello&gt;" />
+              <mapsTo>Modello</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Data_Ordine&gt;{/LRL_Tennis/Data_Ordine/text()}&lt;/Data_Ordine&gt;" />
+              <mapsTo>Data_Ordine</mapsTo>
+            </mapping>
+          </startingMappings>
+          <completedMappings>
+            <mapping>
+              <expression query="&lt;Materiali_da_Ordinare&gt;{/Controllo_Scorte/Materiali_da_Ordinare/text()}&lt;/Materiali_da_Ordinare&gt;" />
+              <mapsTo>Materiali_da_Ordinare</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Materiali_non_Disponibili&gt;{/Controllo_Scorte/Materiali_non_Disponibili/text()}&lt;/Materiali_non_Disponibili&gt;" />
+              <mapsTo>Materiali_non_Disponibili</mapsTo>
+            </mapping>
+          </completedMappings>
+          <resourcing>
+            <offer initiator="system">
+              <distributionSet>
+                <initialSet>
+                  <participant>PA-0451aa45-d440-4a29-a1f5-18e7486bfe6f</participant>
+                  <participant>PA-4114d556-79fd-4fbf-a274-072d7a744ec9</participant>
+                  <participant>PA-e9790830-b8b5-4987-bd80-27a8e35fbd01</participant>
+                  <participant>PA-35455e63-a6d7-4a4c-abb5-2f662fba8115</participant>
+                  <participant>PA-9683a1c8-5c08-42cb-abc9-62092651fbe6</participant>
+                  <role>RO-f7cd1448-7af1-4a7f-adff-08f3d541dba9</role>
+                </initialSet>
+              </distributionSet>
+            </offer>
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Controllo_Scorte" />
+        </task>
+        <task id="Approvvigionamento">
+          <name>Approvvigionamento</name>
+          <flowsInto>
+            <nextElementRef id="Messa_in_Produzione" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <startingMappings>
+            <mapping>
+              <expression query="&lt;Materiali_da_Ordinare&gt;{/LRL_Tennis/Materiali_da_Ordinare/text()}&lt;/Materiali_da_Ordinare&gt;" />
+              <mapsTo>Materiali_da_Ordinare</mapsTo>
+            </mapping>
+          </startingMappings>
+          <completedMappings>
+            <mapping>
+              <expression query="&lt;Materiali_Ordinati&gt;{/Approvvigionamento/Materiali_Ordinati/text()}&lt;/Materiali_Ordinati&gt;" />
+              <mapsTo>Materiali_Ordinati</mapsTo>
+            </mapping>
+          </completedMappings>
+          <resourcing>
+            <offer initiator="system">
+              <distributionSet>
+                <initialSet>
+                  <participant>PA-0451aa45-d440-4a29-a1f5-18e7486bfe6f</participant>
+                  <participant>PA-4114d556-79fd-4fbf-a274-072d7a744ec9</participant>
+                  <participant>PA-35455e63-a6d7-4a4c-abb5-2f662fba8115</participant>
+                  <participant>PA-6c5155d0-c91b-4e92-801d-00d8b57fee0e</participant>
+                  <role>RO-8fc0330a-0ae3-47fd-bdbe-c8019ea6a2ad</role>
+                </initialSet>
+              </distributionSet>
+            </offer>
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Approvvigionamento" />
+        </task>
+        <task id="Messa_in_Produzione">
+          <name>Messa_in_Produzione</name>
+          <flowsInto>
+            <nextElementRef id="Realizzazione_Corde" />
+          </flowsInto>
+          <flowsInto>
+            <nextElementRef id="Realizzazione_Telaio" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <startingMappings>
+            <mapping>
+              <expression query="&lt;Numero_Ordine&gt;{/LRL_Tennis/Numero_Ordine/text()}&lt;/Numero_Ordine&gt;" />
+              <mapsTo>Numero_Ordine</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Modello&gt;{/LRL_Tennis/Modello/text()}&lt;/Modello&gt;" />
+              <mapsTo>Modello</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Data_Ordine&gt;{/LRL_Tennis/Data_Ordine/text()}&lt;/Data_Ordine&gt;" />
+              <mapsTo>Data_Ordine</mapsTo>
+            </mapping>
+          </startingMappings>
+          <resourcing>
+            <offer initiator="system">
+              <distributionSet>
+                <initialSet>
+                  <participant>PA-0451aa45-d440-4a29-a1f5-18e7486bfe6f</participant>
+                  <participant>PA-4114d556-79fd-4fbf-a274-072d7a744ec9</participant>
+                  <participant>PA-e9790830-b8b5-4987-bd80-27a8e35fbd01</participant>
+                  <participant>PA-35455e63-a6d7-4a4c-abb5-2f662fba8115</participant>
+                  <participant>PA-9683a1c8-5c08-42cb-abc9-62092651fbe6</participant>
+                  <role>RO-f7cd1448-7af1-4a7f-adff-08f3d541dba9</role>
+                </initialSet>
+              </distributionSet>
+            </offer>
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Messa_in_Produzione" />
+        </task>
+        <task id="Realizzazione_Corde">
+          <name>Realizzazione_Corde</name>
+          <flowsInto>
+            <nextElementRef id="Assemblaggio_Racchetta" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <startingMappings>
+            <mapping>
+              <expression query="&lt;Numero_Ordine&gt;{/LRL_Tennis/Numero_Ordine/text()}&lt;/Numero_Ordine&gt;" />
+              <mapsTo>Numero_Ordine</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Modello&gt;{/LRL_Tennis/Modello/text()}&lt;/Modello&gt;" />
+              <mapsTo>Modello</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Data_Ordine&gt;{/LRL_Tennis/Data_Ordine/text()}&lt;/Data_Ordine&gt;" />
+              <mapsTo>Data_Ordine</mapsTo>
+            </mapping>
+          </startingMappings>
+          <resourcing>
+            <offer initiator="system">
+              <distributionSet>
+                <initialSet>
+                  <participant>PA-0c059122-a9e5-4f92-92bd-2c78b46f9ecb</participant>
+                  <participant>PA-0451aa45-d440-4a29-a1f5-18e7486bfe6f</participant>
+                  <participant>PA-fb757153-4132-4a53-853b-85677f4441f1</participant>
+                  <participant>PA-4114d556-79fd-4fbf-a274-072d7a744ec9</participant>
+                  <participant>PA-132a77f9-09b5-4232-903e-4a8c35f12409</participant>
+                  <participant>PA-35455e63-a6d7-4a4c-abb5-2f662fba8115</participant>
+                  <participant>PA-1cf29ceb-8c2d-4d23-9000-8317320b3ea2</participant>
+                  <participant>PA-271fd05c-daf5-4640-b57f-e6ddbc9cf280</participant>
+                  <participant>PA-f59ab46e-3c1d-4361-9a01-73eaf0abef01</participant>
+                  <role>RO-49f87601-179e-4922-82db-fc16b29fbb54</role>
+                </initialSet>
+              </distributionSet>
+            </offer>
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Realizzazione_Corde" />
+        </task>
+        <task id="Realizzazione_Telaio">
+          <name>Realizzazione_Telaio</name>
+          <flowsInto>
+            <nextElementRef id="Assemblaggio_Racchetta" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <startingMappings>
+            <mapping>
+              <expression query="&lt;Numero_Ordine&gt;{/LRL_Tennis/Numero_Ordine/text()}&lt;/Numero_Ordine&gt;" />
+              <mapsTo>Numero_Ordine</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Modello&gt;{/LRL_Tennis/Modello/text()}&lt;/Modello&gt;" />
+              <mapsTo>Modello</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Data_Ordine&gt;{/LRL_Tennis/Data_Ordine/text()}&lt;/Data_Ordine&gt;" />
+              <mapsTo>Data_Ordine</mapsTo>
+            </mapping>
+          </startingMappings>
+          <resourcing>
+            <offer initiator="system">
+              <distributionSet>
+                <initialSet>
+                  <participant>PA-0c059122-a9e5-4f92-92bd-2c78b46f9ecb</participant>
+                  <participant>PA-0451aa45-d440-4a29-a1f5-18e7486bfe6f</participant>
+                  <participant>PA-fb757153-4132-4a53-853b-85677f4441f1</participant>
+                  <participant>PA-4114d556-79fd-4fbf-a274-072d7a744ec9</participant>
+                  <participant>PA-132a77f9-09b5-4232-903e-4a8c35f12409</participant>
+                  <participant>PA-35455e63-a6d7-4a4c-abb5-2f662fba8115</participant>
+                  <participant>PA-1cf29ceb-8c2d-4d23-9000-8317320b3ea2</participant>
+                  <participant>PA-271fd05c-daf5-4640-b57f-e6ddbc9cf280</participant>
+                  <participant>PA-f59ab46e-3c1d-4361-9a01-73eaf0abef01</participant>
+                  <role>RO-49f87601-179e-4922-82db-fc16b29fbb54</role>
+                </initialSet>
+              </distributionSet>
+            </offer>
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Realizzazione_Telaio" />
+        </task>
+        <task id="Assemblaggio_Racchetta">
+          <name>Assemblaggio_Racchetta</name>
+          <flowsInto>
+            <nextElementRef id="Messa_in_Tensione_Corde" />
+          </flowsInto>
+          <join code="and" />
+          <split code="and" />
+          <startingMappings>
+            <mapping>
+              <expression query="&lt;Numero_Ordine&gt;{/LRL_Tennis/Numero_Ordine/text()}&lt;/Numero_Ordine&gt;" />
+              <mapsTo>Numero_Ordine</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Modello&gt;{/LRL_Tennis/Modello/text()}&lt;/Modello&gt;" />
+              <mapsTo>Modello</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Data_Ordine&gt;{/LRL_Tennis/Data_Ordine/text()}&lt;/Data_Ordine&gt;" />
+              <mapsTo>Data_Ordine</mapsTo>
+            </mapping>
+          </startingMappings>
+          <resourcing>
+            <offer initiator="system">
+              <distributionSet>
+                <initialSet>
+                  <participant>PA-0c059122-a9e5-4f92-92bd-2c78b46f9ecb</participant>
+                  <participant>PA-0451aa45-d440-4a29-a1f5-18e7486bfe6f</participant>
+                  <participant>PA-fb757153-4132-4a53-853b-85677f4441f1</participant>
+                  <participant>PA-4114d556-79fd-4fbf-a274-072d7a744ec9</participant>
+                  <participant>PA-132a77f9-09b5-4232-903e-4a8c35f12409</participant>
+                  <participant>PA-35455e63-a6d7-4a4c-abb5-2f662fba8115</participant>
+                  <participant>PA-1cf29ceb-8c2d-4d23-9000-8317320b3ea2</participant>
+                  <participant>PA-271fd05c-daf5-4640-b57f-e6ddbc9cf280</participant>
+                  <participant>PA-f59ab46e-3c1d-4361-9a01-73eaf0abef01</participant>
+                  <role>RO-49f87601-179e-4922-82db-fc16b29fbb54</role>
+                </initialSet>
+              </distributionSet>
+            </offer>
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Assemblaggio_Racchetta" />
+        </task>
+        <task id="Messa_in_Tensione_Corde">
+          <name>Messa_in_Tensione_Corde</name>
+          <flowsInto>
+            <nextElementRef id="Check_Integrita_Prodotto" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <startingMappings>
+            <mapping>
+              <expression query="&lt;Numero_Ordine&gt;{/LRL_Tennis/Numero_Ordine/text()}&lt;/Numero_Ordine&gt;" />
+              <mapsTo>Numero_Ordine</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Modello&gt;{/LRL_Tennis/Modello/text()}&lt;/Modello&gt;" />
+              <mapsTo>Modello</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Data_Ordine&gt;{/LRL_Tennis/Data_Ordine/text()}&lt;/Data_Ordine&gt;" />
+              <mapsTo>Data_Ordine</mapsTo>
+            </mapping>
+          </startingMappings>
+          <completedMappings>
+            <mapping>
+              <expression query="&lt;Tensione_Corde_kg&gt;{/Messa_in_Tensione_Corde/Tensione_Corde_kg/text()}&lt;/Tensione_Corde_kg&gt;" />
+              <mapsTo>Tensione_Corde_kg</mapsTo>
+            </mapping>
+          </completedMappings>
+          <resourcing>
+            <offer initiator="system">
+              <distributionSet>
+                <initialSet>
+                  <participant>PA-0c059122-a9e5-4f92-92bd-2c78b46f9ecb</participant>
+                  <participant>PA-0451aa45-d440-4a29-a1f5-18e7486bfe6f</participant>
+                  <participant>PA-fb757153-4132-4a53-853b-85677f4441f1</participant>
+                  <participant>PA-4114d556-79fd-4fbf-a274-072d7a744ec9</participant>
+                  <participant>PA-132a77f9-09b5-4232-903e-4a8c35f12409</participant>
+                  <participant>PA-35455e63-a6d7-4a4c-abb5-2f662fba8115</participant>
+                  <participant>PA-1cf29ceb-8c2d-4d23-9000-8317320b3ea2</participant>
+                  <participant>PA-271fd05c-daf5-4640-b57f-e6ddbc9cf280</participant>
+                  <participant>PA-f59ab46e-3c1d-4361-9a01-73eaf0abef01</participant>
+                  <role>RO-49f87601-179e-4922-82db-fc16b29fbb54</role>
+                </initialSet>
+              </distributionSet>
+            </offer>
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Messa_in_Tensione_Corde" />
+        </task>
+        <task id="Check_Integrita_Prodotto">
+          <name>Check_Integrita_Prodotto</name>
+          <flowsInto>
+            <nextElementRef id="Imballaggio_Prodotto" />
+            <predicate ordering="0">LRL_Tennis/Check_Superato/text() = 'true'</predicate>
+          </flowsInto>
+          <flowsInto>
+            <nextElementRef id="Controllo_Scorte" />
+            <isDefaultFlow />
+          </flowsInto>
+          <join code="xor" />
+          <split code="xor" />
+          <startingMappings>
+            <mapping>
+              <expression query="&lt;Numero_Ordine&gt;{/LRL_Tennis/Numero_Ordine/text()}&lt;/Numero_Ordine&gt;" />
+              <mapsTo>Numero_Ordine</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Modello&gt;{/LRL_Tennis/Modello/text()}&lt;/Modello&gt;" />
+              <mapsTo>Modello</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Tensione_Corde_kg&gt;{/LRL_Tennis/Tensione_Corde_kg/text()}&lt;/Tensione_Corde_kg&gt;" />
+              <mapsTo>Tensione_Corde_kg</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Data_Ordine&gt;{/LRL_Tennis/Data_Ordine/text()}&lt;/Data_Ordine&gt;" />
+              <mapsTo>Data_Ordine</mapsTo>
+            </mapping>
+          </startingMappings>
+          <completedMappings>
+            <mapping>
+              <expression query="&lt;Check_Superato&gt;{/Check_Integrita_Prodotto/Check_Superato/text()}&lt;/Check_Superato&gt;" />
+              <mapsTo>Check_Superato</mapsTo>
+            </mapping>
+          </completedMappings>
+          <resourcing>
+            <offer initiator="system">
+              <distributionSet>
+                <initialSet>
+                  <participant>PA-c23aee0d-1a5b-4e35-9d50-6500117a6fcd</participant>
+                  <participant>PA-0451aa45-d440-4a29-a1f5-18e7486bfe6f</participant>
+                  <participant>PA-4114d556-79fd-4fbf-a274-072d7a744ec9</participant>
+                  <participant>PA-35455e63-a6d7-4a4c-abb5-2f662fba8115</participant>
+                  <role>RO-e004499e-416e-420e-871e-cfbac0fc0f80</role>
+                </initialSet>
+              </distributionSet>
+            </offer>
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Check_Integrita_Prodotto" />
+        </task>
+        <task id="Imballaggio_Prodotto">
+          <name>Imballaggio_Prodotto</name>
+          <flowsInto>
+            <nextElementRef id="Metodo_Pagamento" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <startingMappings>
+            <mapping>
+              <expression query="&lt;Numero_Ordine&gt;{/LRL_Tennis/Numero_Ordine/text()}&lt;/Numero_Ordine&gt;" />
+              <mapsTo>Numero_Ordine</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Modello&gt;{/LRL_Tennis/Modello/text()}&lt;/Modello&gt;" />
+              <mapsTo>Modello</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Data_Ordine&gt;{/LRL_Tennis/Data_Ordine/text()}&lt;/Data_Ordine&gt;" />
+              <mapsTo>Data_Ordine</mapsTo>
+            </mapping>
+          </startingMappings>
+          <resourcing>
+            <offer initiator="system">
+              <distributionSet>
+                <initialSet>
+                  <participant>PA-9ac1001a-e9d7-4cbb-9b23-ac5c93c5ba61</participant>
+                  <participant>PA-0451aa45-d440-4a29-a1f5-18e7486bfe6f</participant>
+                  <participant>PA-dabd62e6-c5a2-429d-a074-1ed6671c6646</participant>
+                  <participant>PA-4114d556-79fd-4fbf-a274-072d7a744ec9</participant>
+                  <participant>PA-35455e63-a6d7-4a4c-abb5-2f662fba8115</participant>
+                  <role>RO-3723f50d-b416-4091-8802-cd8ebbaa34fc</role>
+                </initialSet>
+              </distributionSet>
+            </offer>
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Imballaggio_Prodotto" />
+        </task>
+        <task id="Metodo_Pagamento">
+          <name>Metodo_Pagamento</name>
+          <flowsInto>
+            <nextElementRef id="Contanti" />
+            <isDefaultFlow />
+          </flowsInto>
+          <flowsInto>
+            <nextElementRef id="Assegno" />
+            <predicate ordering="0">LRL_Tennis/Assegno/text() = 'true'</predicate>
+          </flowsInto>
+          <join code="and" />
+          <split code="xor" />
+          <startingMappings>
+            <mapping>
+              <expression query="&lt;Nome&gt;{/LRL_Tennis/Nome/text()}&lt;/Nome&gt;" />
+              <mapsTo>Nome</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Numero_Ordine&gt;{/LRL_Tennis/Numero_Ordine/text()}&lt;/Numero_Ordine&gt;" />
+              <mapsTo>Numero_Ordine</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Cognome&gt;{/LRL_Tennis/Cognome/text()}&lt;/Cognome&gt;" />
+              <mapsTo>Cognome</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Modello&gt;{/LRL_Tennis/Modello/text()}&lt;/Modello&gt;" />
+              <mapsTo>Modello</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Data_Ordine&gt;{/LRL_Tennis/Data_Ordine/text()}&lt;/Data_Ordine&gt;" />
+              <mapsTo>Data_Ordine</mapsTo>
+            </mapping>
+          </startingMappings>
+          <completedMappings>
+            <mapping>
+              <expression query="&lt;Assegno&gt;{/Metodo_Pagamento/Assegno/text()}&lt;/Assegno&gt;" />
+              <mapsTo>Assegno</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Importo&gt;{/Metodo_Pagamento/Importo/text()}&lt;/Importo&gt;" />
+              <mapsTo>Importo</mapsTo>
+            </mapping>
+          </completedMappings>
+          <resourcing>
+            <offer initiator="system">
+              <distributionSet>
+                <initialSet>
+                  <participant>PA-0199ce90-ae8c-43ff-b914-9fb6182a114d</participant>
+                  <participant>PA-0451aa45-d440-4a29-a1f5-18e7486bfe6f</participant>
+                  <participant>PA-4114d556-79fd-4fbf-a274-072d7a744ec9</participant>
+                  <participant>PA-9d0fe04f-98dd-4f93-82ea-bf6f7a7bc1e6</participant>
+                  <participant>PA-35455e63-a6d7-4a4c-abb5-2f662fba8115</participant>
+                  <role>RO-bab0347b-5a6e-4e66-845f-3cc768db94f4</role>
+                </initialSet>
+              </distributionSet>
+            </offer>
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Metodo_Pagamento" />
+        </task>
+        <task id="Assegno">
+          <name>Assegno</name>
+          <flowsInto>
+            <nextElementRef id="Spedizione" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <startingMappings>
+            <mapping>
+              <expression query="&lt;Numero_Ordine&gt;{/LRL_Tennis/Numero_Ordine/text()}&lt;/Numero_Ordine&gt;" />
+              <mapsTo>Numero_Ordine</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Modello&gt;{/LRL_Tennis/Modello/text()}&lt;/Modello&gt;" />
+              <mapsTo>Modello</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Nome&gt;{/LRL_Tennis/Nome/text()}&lt;/Nome&gt;" />
+              <mapsTo>Nome</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Cognome&gt;{/LRL_Tennis/Cognome/text()}&lt;/Cognome&gt;" />
+              <mapsTo>Cognome</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Data_Ordine&gt;{/LRL_Tennis/Data_Ordine/text()}&lt;/Data_Ordine&gt;" />
+              <mapsTo>Data_Ordine</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Importo&gt;{/LRL_Tennis/Importo/text()}&lt;/Importo&gt;" />
+              <mapsTo>Importo</mapsTo>
+            </mapping>
+          </startingMappings>
+          <resourcing>
+            <offer initiator="system">
+              <distributionSet>
+                <initialSet>
+                  <participant>PA-0199ce90-ae8c-43ff-b914-9fb6182a114d</participant>
+                  <participant>PA-0451aa45-d440-4a29-a1f5-18e7486bfe6f</participant>
+                  <participant>PA-4114d556-79fd-4fbf-a274-072d7a744ec9</participant>
+                  <participant>PA-9d0fe04f-98dd-4f93-82ea-bf6f7a7bc1e6</participant>
+                  <participant>PA-35455e63-a6d7-4a4c-abb5-2f662fba8115</participant>
+                  <role>RO-bab0347b-5a6e-4e66-845f-3cc768db94f4</role>
+                </initialSet>
+              </distributionSet>
+            </offer>
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Assegno" />
+        </task>
+        <task id="Contanti">
+          <name>Contanti</name>
+          <flowsInto>
+            <nextElementRef id="Spedizione" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <startingMappings>
+            <mapping>
+              <expression query="&lt;Numero_Ordine&gt;{/LRL_Tennis/Numero_Ordine/text()}&lt;/Numero_Ordine&gt;" />
+              <mapsTo>Numero_Ordine</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Modello&gt;{/LRL_Tennis/Modello/text()}&lt;/Modello&gt;" />
+              <mapsTo>Modello</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Nome&gt;{/LRL_Tennis/Nome/text()}&lt;/Nome&gt;" />
+              <mapsTo>Nome</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Cognome&gt;{/LRL_Tennis/Cognome/text()}&lt;/Cognome&gt;" />
+              <mapsTo>Cognome</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Data_Ordine&gt;{/LRL_Tennis/Data_Ordine/text()}&lt;/Data_Ordine&gt;" />
+              <mapsTo>Data_Ordine</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Importo&gt;{/LRL_Tennis/Importo/text()}&lt;/Importo&gt;" />
+              <mapsTo>Importo</mapsTo>
+            </mapping>
+          </startingMappings>
+          <resourcing>
+            <offer initiator="system">
+              <distributionSet>
+                <initialSet>
+                  <participant>PA-0199ce90-ae8c-43ff-b914-9fb6182a114d</participant>
+                  <participant>PA-0451aa45-d440-4a29-a1f5-18e7486bfe6f</participant>
+                  <participant>PA-4114d556-79fd-4fbf-a274-072d7a744ec9</participant>
+                  <participant>PA-9d0fe04f-98dd-4f93-82ea-bf6f7a7bc1e6</participant>
+                  <participant>PA-35455e63-a6d7-4a4c-abb5-2f662fba8115</participant>
+                  <role>RO-bab0347b-5a6e-4e66-845f-3cc768db94f4</role>
+                </initialSet>
+              </distributionSet>
+            </offer>
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Contanti" />
+        </task>
+        <task id="Spedizione">
+          <name>Spedizione</name>
+          <flowsInto>
+            <nextElementRef id="Emissione_Fattura" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <startingMappings>
+            <mapping>
+              <expression query="&lt;Numero_Ordine&gt;{/LRL_Tennis/Numero_Ordine/text()}&lt;/Numero_Ordine&gt;" />
+              <mapsTo>Numero_Ordine</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Modello&gt;{/LRL_Tennis/Modello/text()}&lt;/Modello&gt;" />
+              <mapsTo>Modello</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Nome&gt;{/LRL_Tennis/Nome/text()}&lt;/Nome&gt;" />
+              <mapsTo>Nome</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Indirizzo_di_Spedizione&gt;{/LRL_Tennis/Indirizzo_di_Spedizione/text()}&lt;/Indirizzo_di_Spedizione&gt;" />
+              <mapsTo>Indirizzo_di_Spedizione</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Cognome&gt;{/LRL_Tennis/Cognome/text()}&lt;/Cognome&gt;" />
+              <mapsTo>Cognome</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Data_Ordine&gt;{/LRL_Tennis/Data_Ordine/text()}&lt;/Data_Ordine&gt;" />
+              <mapsTo>Data_Ordine</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Importo&gt;{/LRL_Tennis/Importo/text()}&lt;/Importo&gt;" />
+              <mapsTo>Importo</mapsTo>
+            </mapping>
+          </startingMappings>
+          <completedMappings>
+            <mapping>
+              <expression query="&lt;Data_di_Spedizione&gt;{/Spedizione/Data_di_Spedizione/text()}&lt;/Data_di_Spedizione&gt;" />
+              <mapsTo>Data_di_Spedizione</mapsTo>
+            </mapping>
+          </completedMappings>
+          <resourcing>
+            <offer initiator="system">
+              <distributionSet>
+                <initialSet>
+                  <participant>PA-9ac1001a-e9d7-4cbb-9b23-ac5c93c5ba61</participant>
+                  <participant>PA-0451aa45-d440-4a29-a1f5-18e7486bfe6f</participant>
+                  <participant>PA-dabd62e6-c5a2-429d-a074-1ed6671c6646</participant>
+                  <participant>PA-4114d556-79fd-4fbf-a274-072d7a744ec9</participant>
+                  <participant>PA-35455e63-a6d7-4a4c-abb5-2f662fba8115</participant>
+                  <role>RO-3723f50d-b416-4091-8802-cd8ebbaa34fc</role>
+                </initialSet>
+              </distributionSet>
+            </offer>
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Spedizione" />
+        </task>
+        <task id="Emissione_Fattura">
+          <name>Emissione_Fattura</name>
+          <flowsInto>
+            <nextElementRef id="OutputCondition" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <startingMappings>
+            <mapping>
+              <expression query="&lt;Assegno&gt;{/LRL_Tennis/Assegno/text()}&lt;/Assegno&gt;" />
+              <mapsTo>Assegno</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Numero_Ordine&gt;{/LRL_Tennis/Numero_Ordine/text()}&lt;/Numero_Ordine&gt;" />
+              <mapsTo>Numero_Ordine</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Modello&gt;{/LRL_Tennis/Modello/text()}&lt;/Modello&gt;" />
+              <mapsTo>Modello</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Nome&gt;{/LRL_Tennis/Nome/text()}&lt;/Nome&gt;" />
+              <mapsTo>Nome</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Indirizzo_di_Spedizione&gt;{/LRL_Tennis/Indirizzo_di_Spedizione/text()}&lt;/Indirizzo_di_Spedizione&gt;" />
+              <mapsTo>Indirizzo_di_Spedizione</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Cognome&gt;{/LRL_Tennis/Cognome/text()}&lt;/Cognome&gt;" />
+              <mapsTo>Cognome</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Importo&gt;{/LRL_Tennis/Importo/text()}&lt;/Importo&gt;" />
+              <mapsTo>Importo</mapsTo>
+            </mapping>
+          </startingMappings>
+          <completedMappings>
+            <mapping>
+              <expression query="&lt;Numero_Fattura&gt;{/Emissione_Fattura/Numero_Fattura/text()}&lt;/Numero_Fattura&gt;" />
+              <mapsTo>Numero_Fattura</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Data_Fattura&gt;{/Emissione_Fattura/Data_Fattura/text()}&lt;/Data_Fattura&gt;" />
+              <mapsTo>Data_Fattura</mapsTo>
+            </mapping>
+          </completedMappings>
+          <resourcing>
+            <offer initiator="system">
+              <distributionSet>
+                <initialSet>
+                  <participant>PA-0451aa45-d440-4a29-a1f5-18e7486bfe6f</participant>
+                  <participant>PA-4114d556-79fd-4fbf-a274-072d7a744ec9</participant>
+                  <participant>PA-35455e63-a6d7-4a4c-abb5-2f662fba8115</participant>
+                  <participant>PA-8c004f0e-ee21-4827-bde4-3177a32766bf</participant>
+                  <role>RO-83f24f3e-00b3-47a6-ae52-d54c68eb041e</role>
+                </initialSet>
+              </distributionSet>
+            </offer>
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Emissione_Fattura" />
+        </task>
+        <outputCondition id="OutputCondition" />
+      </processControlElements>
+    </decomposition>
+    <decomposition id="Approvvigionamento" xsi:type="WebServiceGatewayFactsType">
+      <inputParam>
+        <index>0</index>
+        <name>Materiali_da_Ordinare</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <outputParam>
+        <index>1</index>
+        <name>Materiali_Ordinati</name>
+        <type>boolean</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <defaultValue />
+      </outputParam>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Assegno" xsi:type="WebServiceGatewayFactsType">
+      <inputParam>
+        <index>0</index>
+        <name>Nome</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>1</index>
+        <name>Cognome</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>2</index>
+        <name>Data_Ordine</name>
+        <type>dateTime</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>3</index>
+        <name>Numero_Ordine</name>
+        <type>ID</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>4</index>
+        <name>Modello</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>5</index>
+        <name>Importo</name>
+        <type>float</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Assemblaggio_Racchetta" xsi:type="WebServiceGatewayFactsType">
+      <inputParam>
+        <index>0</index>
+        <name>Data_Ordine</name>
+        <type>dateTime</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>1</index>
+        <name>Numero_Ordine</name>
+        <type>ID</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>2</index>
+        <name>Modello</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Check_Integrita_Prodotto" xsi:type="WebServiceGatewayFactsType">
+      <inputParam>
+        <index>0</index>
+        <name>Data_Ordine</name>
+        <type>dateTime</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>1</index>
+        <name>Numero_Ordine</name>
+        <type>ID</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>2</index>
+        <name>Modello</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>3</index>
+        <name>Tensione_Corde_kg</name>
+        <type>int</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <outputParam>
+        <index>4</index>
+        <name>Check_Superato</name>
+        <type>boolean</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <defaultValue />
+      </outputParam>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Contanti" xsi:type="WebServiceGatewayFactsType">
+      <inputParam>
+        <index>0</index>
+        <name>Nome</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>1</index>
+        <name>Cognome</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>2</index>
+        <name>Data_Ordine</name>
+        <type>dateTime</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>3</index>
+        <name>Numero_Ordine</name>
+        <type>ID</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>4</index>
+        <name>Modello</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>5</index>
+        <name>Importo</name>
+        <type>float</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Controllo_Scorte" xsi:type="WebServiceGatewayFactsType">
+      <inputParam>
+        <index>0</index>
+        <name>Data_Ordine</name>
+        <type>dateTime</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>1</index>
+        <name>Numero_Ordine</name>
+        <type>ID</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>2</index>
+        <name>Modello</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <outputParam>
+        <index>3</index>
+        <name>Materiali_non_Disponibili</name>
+        <type>boolean</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <defaultValue />
+      </outputParam>
+      <outputParam>
+        <index>4</index>
+        <name>Materiali_da_Ordinare</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <defaultValue />
+      </outputParam>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Emissione_Fattura" xsi:type="WebServiceGatewayFactsType">
+      <inputParam>
+        <index>0</index>
+        <name>Nome</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>1</index>
+        <name>Cognome</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>2</index>
+        <name>Indirizzo_di_Spedizione</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>3</index>
+        <name>Numero_Ordine</name>
+        <type>ID</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>4</index>
+        <name>Modello</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>5</index>
+        <name>Importo</name>
+        <type>float</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>6</index>
+        <name>Assegno</name>
+        <type>boolean</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <outputParam>
+        <index>7</index>
+        <name>Numero_Fattura</name>
+        <type>ID</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <defaultValue />
+      </outputParam>
+      <outputParam>
+        <index>8</index>
+        <name>Data_Fattura</name>
+        <type>dateTime</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <defaultValue />
+      </outputParam>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Imballaggio_Prodotto" xsi:type="WebServiceGatewayFactsType">
+      <inputParam>
+        <index>0</index>
+        <name>Data_Ordine</name>
+        <type>dateTime</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>1</index>
+        <name>Numero_Ordine</name>
+        <type>ID</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>2</index>
+        <name>Modello</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Messa_in_Produzione" xsi:type="WebServiceGatewayFactsType">
+      <inputParam>
+        <index>0</index>
+        <name>Data_Ordine</name>
+        <type>dateTime</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>1</index>
+        <name>Numero_Ordine</name>
+        <type>ID</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>2</index>
+        <name>Modello</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Messa_in_Tensione_Corde" xsi:type="WebServiceGatewayFactsType">
+      <inputParam>
+        <index>0</index>
+        <name>Data_Ordine</name>
+        <type>dateTime</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>1</index>
+        <name>Numero_Ordine</name>
+        <type>ID</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>2</index>
+        <name>Modello</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <outputParam>
+        <index>3</index>
+        <name>Tensione_Corde_kg</name>
+        <type>int</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <defaultValue />
+      </outputParam>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Metodo_Pagamento" xsi:type="WebServiceGatewayFactsType">
+      <inputParam>
+        <index>0</index>
+        <name>Nome</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>1</index>
+        <name>Cognome</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>2</index>
+        <name>Data_Ordine</name>
+        <type>dateTime</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>3</index>
+        <name>Numero_Ordine</name>
+        <type>ID</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>4</index>
+        <name>Modello</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <outputParam>
+        <index>5</index>
+        <name>Importo</name>
+        <type>float</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <defaultValue />
+      </outputParam>
+      <outputParam>
+        <index>6</index>
+        <name>Assegno</name>
+        <type>boolean</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <defaultValue />
+      </outputParam>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Realizzazione_Corde" xsi:type="WebServiceGatewayFactsType">
+      <inputParam>
+        <index>0</index>
+        <name>Data_Ordine</name>
+        <type>dateTime</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>1</index>
+        <name>Numero_Ordine</name>
+        <type>ID</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>2</index>
+        <name>Modello</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Realizzazione_Telaio" xsi:type="WebServiceGatewayFactsType">
+      <inputParam>
+        <index>0</index>
+        <name>Data_Ordine</name>
+        <type>dateTime</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>1</index>
+        <name>Numero_Ordine</name>
+        <type>ID</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>2</index>
+        <name>Modello</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Ricezione_Ordine" xsi:type="WebServiceGatewayFactsType">
+      <outputParam>
+        <index>0</index>
+        <name>Nome</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <defaultValue />
+      </outputParam>
+      <outputParam>
+        <index>1</index>
+        <name>Cognome</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <defaultValue />
+      </outputParam>
+      <outputParam>
+        <index>2</index>
+        <name>Indirizzo_di_Spedizione</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <defaultValue />
+      </outputParam>
+      <outputParam>
+        <index>3</index>
+        <name>Data_Ordine</name>
+        <type>dateTime</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <defaultValue />
+      </outputParam>
+      <outputParam>
+        <index>4</index>
+        <name>Numero_Ordine</name>
+        <type>ID</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <defaultValue />
+      </outputParam>
+      <outputParam>
+        <index>5</index>
+        <name>Modello</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <defaultValue />
+      </outputParam>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Spedizione" xsi:type="WebServiceGatewayFactsType">
+      <inputParam>
+        <index>0</index>
+        <name>Nome</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>1</index>
+        <name>Cognome</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>2</index>
+        <name>Data_Ordine</name>
+        <type>dateTime</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>3</index>
+        <name>Numero_Ordine</name>
+        <type>ID</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>4</index>
+        <name>Modello</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>5</index>
+        <name>Importo</name>
+        <type>float</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>6</index>
+        <name>Indirizzo_di_Spedizione</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <outputParam>
+        <index>7</index>
+        <name>Data_di_Spedizione</name>
+        <type>dateTime</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <defaultValue />
+      </outputParam>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+  </specification>
+  <layout>
+    <locale language="it" country="IT"/>
+    <specification id="LRL_Tennis_Completato_senza_tutti_i_boolean">
+      <size w="58" h="28"/>
+      <net id="LRL_Tennis">
+        <bounds x="0" y="0" w="1902" h="517"/>
+        <frame x="0" y="0" w="1303" h="535"/>
+        <viewport x="0" y="0" w="1303" h="535"/>
+        <vertex id="OutputCondition">
+          <attributes>
+            <bounds x="1.849" y="325" w="33" h="32"/>
+          </attributes>
+        </vertex>
+        <vertex id="InputCondition">
+          <attributes>
+            <bounds x="36" y="311" w="32" h="33"/>
+          </attributes>
+        </vertex>
+        <container id="Messa_in_Tensione_Corde">
+          <vertex>
+            <attributes>
+              <bounds x="956" y="319" w="32" h="33"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="891" y="352" w="162" h="20"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="Assemblaggio_Racchetta">
+          <vertex>
+            <attributes>
+              <bounds x="796" y="314" w="32" h="33"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="729" y="344" w="151" h="21"/>
+            </attributes>
+          </label>
+          <decorator type="AND_join">
+            <position>12</position>
+            <attributes>
+              <bounds x="786" y="314" w="11" h="33"/>
+            </attributes>
+          </decorator>
+        </container>
+        <container id="Messa_in_Produzione">
+          <vertex>
+            <attributes>
+              <bounds x="448" y="313" w="32" h="33"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="398" y="345" w="133" h="21"/>
+            </attributes>
+          </label>
+          <decorator type="AND_split">
+            <position>13</position>
+            <attributes>
+              <bounds x="479" y="313" w="11" h="33"/>
+            </attributes>
+          </decorator>
+          <decorator type="XOR_join">
+            <position>12</position>
+            <attributes>
+              <bounds x="438" y="313" w="11" h="33"/>
+            </attributes>
+          </decorator>
+        </container>
+        <container id="Ricezione_Ordine">
+          <vertex>
+            <attributes>
+              <bounds x="140" y="313" w="32" h="33"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="104" y="348" w="107" h="20"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="Emissione_Fattura">
+          <vertex>
+            <attributes>
+              <bounds x="1.767" y="323" w="32" h="33"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="1.730" y="356" w="110" h="20"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="Realizzazione_Corde">
+          <vertex>
+            <attributes>
+              <bounds x="608" y="356" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="563" y="388" w="126" h="20"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="Spedizione">
+          <vertex>
+            <attributes>
+              <bounds x="1.655" y="323" w="32" h="33"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="1.620" y="356" w="96" h="20"/>
+            </attributes>
+          </label>
+          <decorator type="XOR_join">
+            <position>12</position>
+            <attributes>
+              <bounds x="1.645" y="323" w="11" h="33"/>
+            </attributes>
+          </decorator>
+        </container>
+        <container id="Assegno">
+          <vertex>
+            <attributes>
+              <bounds x="1.536" y="230" w="33" h="33"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="1.504" y="264" w="96" h="20"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="Contanti">
+          <vertex>
+            <attributes>
+              <bounds x="1.536" y="424" w="33" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="1.504" y="456" w="96" h="20"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="Controllo_Scorte">
+          <vertex>
+            <attributes>
+              <bounds x="260" y="314" w="32" h="33"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="227" y="348" w="104" h="20"/>
+            </attributes>
+          </label>
+          <decorator type="XOR_split">
+            <position>13</position>
+            <attributes>
+              <bounds x="291" y="314" w="11" h="33"/>
+            </attributes>
+          </decorator>
+          <decorator type="XOR_join">
+            <position>12</position>
+            <attributes>
+              <bounds x="250" y="314" w="11" h="33"/>
+            </attributes>
+          </decorator>
+        </container>
+        <container id="Approvvigionamento">
+          <vertex>
+            <attributes>
+              <bounds x="356" y="220" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="312" y="252" w="126" h="20"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="Imballaggio_Prodotto">
+          <vertex>
+            <attributes>
+              <bounds x="1.271" y="320" w="32" h="33"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="1.226" y="353" w="130" h="21"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="Realizzazione_Telaio">
+          <vertex>
+            <attributes>
+              <bounds x="608" y="268" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="563" y="300" w="123" h="20"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="Metodo_Pagamento">
+          <vertex>
+            <attributes>
+              <bounds x="1.409" y="320" w="32" h="33"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="1.373" y="352" w="121" h="20"/>
+            </attributes>
+          </label>
+          <decorator type="XOR_split">
+            <position>13</position>
+            <attributes>
+              <bounds x="1.440" y="320" w="11" h="33"/>
+            </attributes>
+          </decorator>
+        </container>
+        <container id="Check_Integrita_Prodotto">
+          <vertex>
+            <attributes>
+              <bounds x="1.114" y="322" w="32" h="33"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="1.064" y="352" w="156" h="21"/>
+            </attributes>
+          </label>
+          <decorator type="XOR_split">
+            <position>13</position>
+            <attributes>
+              <bounds x="1.145" y="322" w="11" h="33"/>
+            </attributes>
+          </decorator>
+        </container>
+        <flow source="Controllo_Scorte" target="Approvvigionamento">
+          <ports in="2" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+            <points>
+              <value x="301" y="335,5"/>
+              <value x="300" y="236"/>
+              <value x="336" y="235,5"/>
+            </points>
+          </attributes>
+        </flow>
+        <flow source="Realizzazione_Telaio" target="Assemblaggio_Racchetta">
+          <ports in="13" out="2"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Ricezione_Ordine" target="Controllo_Scorte">
+          <ports in="13" out="2"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+            <points>
+              <value x="171" y="338,75"/>
+              <value x="250" y="339,75"/>
+            </points>
+          </attributes>
+        </flow>
+        <flow source="Messa_in_Tensione_Corde" target="Check_Integrita_Prodotto">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+            <points>
+              <value x="987" y="344,531"/>
+              <value x="1.114" y="344,781"/>
+            </points>
+          </attributes>
+        </flow>
+        <flow source="Emissione_Fattura" target="OutputCondition">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Messa_in_Produzione" target="Realizzazione_Telaio">
+          <ports in="1" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Contanti" target="Spedizione">
+          <ports in="13" out="3"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Metodo_Pagamento" target="Contanti">
+          <ports in="3" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Assemblaggio_Racchetta" target="Messa_in_Tensione_Corde">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+            <points>
+              <value x="827" y="339,641"/>
+              <value x="956" y="344,531"/>
+            </points>
+          </attributes>
+        </flow>
+        <flow source="Metodo_Pagamento" target="Assegno">
+          <ports in="2" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Check_Integrita_Prodotto" target="Controllo_Scorte">
+          <ports in="4" out="3"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+            <points>
+              <value x="1.150" y="354"/>
+              <value x="624" y="468"/>
+              <value x="250" y="338"/>
+            </points>
+          </attributes>
+        </flow>
+        <flow source="Controllo_Scorte" target="Messa_in_Produzione">
+          <ports in="3" out="2"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+            <points>
+              <value x="301" y="338"/>
+              <value x="438" y="329"/>
+            </points>
+          </attributes>
+        </flow>
+        <flow source="Realizzazione_Corde" target="Assemblaggio_Racchetta">
+          <ports in="13" out="3"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Spedizione" target="Emissione_Fattura">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Imballaggio_Prodotto" target="Metodo_Pagamento">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Approvvigionamento" target="Messa_in_Produzione">
+          <ports in="13" out="1"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+            <points>
+              <value x="363" y="235,5"/>
+              <value x="440" y="234"/>
+              <value x="439" y="320"/>
+            </points>
+          </attributes>
+        </flow>
+        <flow source="InputCondition" target="Ricezione_Ordine">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+            <points>
+              <value x="67" y="346,25"/>
+              <value x="140" y="336,25"/>
+            </points>
+          </attributes>
+        </flow>
+        <flow source="Assegno" target="Spedizione">
+          <ports in="13" out="2"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Messa_in_Produzione" target="Realizzazione_Corde">
+          <ports in="3" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Check_Integrita_Prodotto" target="Imballaggio_Prodotto">
+          <ports in="3" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+      </net>
+    </specification>
+  </layout>
+</specificationSet>
